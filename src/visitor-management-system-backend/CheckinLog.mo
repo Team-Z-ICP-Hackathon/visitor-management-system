@@ -1,0 +1,1 @@
+// defines the CheckIn entity and the methods supporting the checkin process
