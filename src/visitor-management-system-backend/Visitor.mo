@@ -1,0 +1,1 @@
+// Defines the Visitor entity and its related methods

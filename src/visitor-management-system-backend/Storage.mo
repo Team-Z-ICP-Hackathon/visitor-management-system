@@ -1,0 +1,1 @@
+// Defines centralized data storage and helper methods
