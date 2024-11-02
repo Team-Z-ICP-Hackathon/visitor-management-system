@@ -1,10 +1,8 @@
-
-// src/components/Checkout.js
-import React, { useRef, useEffect, useState } from 'react';
+ import React, { useRef, useEffect, useState } from 'react';
 import Webcam from 'react-webcam';
-import axiosInstance from '../axiosInstance'; // Ensure correct path
+import axiosInstance from '../axiosInstance';
 import * as faceapi from 'face-api.js';
-import Navbar from './Navrbar'; // Ensure correct spelling
+import Navbar from './Navrbar'; 
 
 const Checkout = () => {
   const webcamRef = useRef(null);
