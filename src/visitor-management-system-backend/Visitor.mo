@@ -1,21 +1,7 @@
-// Defines the Visitor entity and its related methods
 
-public type Visitor = {
-    id: Text;
-    firstName: Text;
-    lastName: Text;
-    phoneNumber: Text;
-    email: Text;
-    faceData: Blob;
-};
-
-public func createVisitor(id: Text, firstName: Text, lastName: Text, phoneNumber: Text, email: Text, faceData: Blob): Visitor {
-    return {
-        id = id;
-        firstName = firstName;
-        lastName = lastName;
-        phoneNumber = phoneNumber;
-        email = email;
-        faceData = faceData;
-    };
+actor Visitor {
+    public func getVisitorDetails(visitorId: Text): async Text {
+        // Logic to retrieve visitor details
+        return "Details for visitor: " # visitorId; // Placeholder return value
+    }
 }

@@ -16,9 +16,6 @@ const Navbar = () => {
           <Link to="/registration" className="hover:text-orange-500 transition duration-300">
             Register
           </Link>
-          <Link to="/check-in" className="hover:text-orange-500 transition duration-300">
-            Check-in
-          </Link>
           <Link to="/check-out" className="hover:text-orange-500 transition duration-300">
             Check-out
           </Link>

@@ -1,8 +1,11 @@
-// Will serve as the main entry point for the visitor management process
 
+import Debug "mo:base/Debug";
 
-actor {
-  public query func greet(name : Text) : async Text {
-    return "Hello, " # name # "!";
-  };
-};
+actor Checkout {
+  public query func checkout(image: Text, userId: Principal) : async Text {
+    // Process the checkout, store user info, etc.
+    Debug.print("User ID: " # userId.toText());
+    Debug.print("Image: " # image);
+    return "Checkout successful"; // Or any relevant success message
+  }
+}
