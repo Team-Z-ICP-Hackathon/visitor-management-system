@@ -6,6 +6,10 @@ import Navbar from './Components/Navrbar';
 import CheckInPage from './Components/CheckInpage'; 
 import CheckOutPage from './Components/CheckOutPage';
 import RegisterPage from './Components/RegisterPage';
+import axiosInstance from './axiosInstance';
+//import visitor-management-system-backend  from './vistor-management-system-backend';
+
+//console.log("vistor-management-system-backend",vistor-management-system-backend);
 
 const App = () => {
   return (

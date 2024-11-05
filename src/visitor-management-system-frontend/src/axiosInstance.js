@@ -2,8 +2,10 @@
 import axios from 'axios';
 
 const axiosInstance = axios.create({
-  baseURL: 'http://localhost:8000', // Update with your backend URL
-  timeout: 10000, // 10 seconds timeout
+  baseURL: 'https://be2us-64aaa-aaaaa-qaabq-cai.ic0.app', // Your frontend canister ID
+  headers: {
+    'Content-Type': 'application/json',
+  },
 });
 
 export default axiosInstance;
