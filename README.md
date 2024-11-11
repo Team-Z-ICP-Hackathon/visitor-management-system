@@ -27,6 +27,10 @@ In this system, visitors are verified via their facial recognition data captured
 
 The system will integrate an anomaly detection AI algorithm for an added layer of security to the system. The algorithm will track activity patterns, such as unusual visitor check-in frequencies or abnormal behaviors over time.
 
+## Demo
+SecurePass development is on chain
+[https://ocw66-bqaaa-aaaai-aqcrq-cai.icp0.io/]
+
 ## Why the ICP Blockchain?
 
 - **Decentralized Data Storage**: Unlike traditional centralized VMS solutions, ICP allows visitor data to be stored on a decentralized network, making it more secure and resistant to tampering.
