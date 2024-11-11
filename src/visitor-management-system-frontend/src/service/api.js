@@ -1,6 +1,6 @@
 
 import { Actor, HttpAgent } from '@dfinity/agent';
-import { idlFactory } from '../declarations/CheckinLog'; // Adjust path as needed
+import { idlFactory } from '../declarations/CheckinLog'; 
 
 const agent = new HttpAgent();
 const checkinLogActor = Actor.createActor(idlFactory, {
