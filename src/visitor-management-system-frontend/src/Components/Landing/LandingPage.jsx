@@ -1,4 +1,5 @@
 
+
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -25,8 +26,8 @@ const LandingPage = () => {
           <Link to="#about" className="hover:text-orange-500 transition duration-300">About Us</Link>
           <Link to="#Service " className="hover:text-orange-500 transition duration-300">Service</Link>
         </nav>
-        <Link to="/Navbar" className="bg-orange-500 text-black px-5 py-2 rounded-full shadow-md hover:bg-white hover:text-black transition duration-300">
-          Register
+        <Link to="Dashboard/" className="bg-orange-500 text-black px-5 py-2 rounded-full shadow-md hover:bg-white hover:text-black transition duration-300">
+          Admin
         </Link>
       </header>
 
