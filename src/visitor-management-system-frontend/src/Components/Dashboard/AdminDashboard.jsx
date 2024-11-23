@@ -1,13 +1,21 @@
-
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faSignOutAlt, faUserCog, faClipboardList, faUserPlus, faChartBar, faCheck, faClock } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faSignOutAlt,
+  faUserCog,
+  faClipboardList,
+  faUserPlus,
+  faChartBar,
+  faCheck,
+  faClock,
+} from "@fortawesome/free-solid-svg-icons";
 
 const AdminDashboard = () => {
   const [visitors, setVisitors] = useState([]);
   const [logs, setLogs] = useState([]);
   const [todayCheckIns, setTodayCheckIns] = useState(0);
+  const [todayCheckOuts, setTodayCheckOuts] = useState(0);
 
   useEffect(() => {
     fetchVisitors();
@@ -15,62 +23,80 @@ const AdminDashboard = () => {
   }, []);
 
   const fetchVisitors = async () => {
-    try {
-      const response = await fetch("/api/admin/getRegisteredVisitors");
-      const data = await response.json();
-      setVisitors(data);
-    } catch (error) {
-      console.error("Error fetching visitors:", error);
-    }
+    const dummyVisitors = [
+      { id: 1, name: "John Doe", email: "john.doe@example.com", phone: "123-456-7890", userid: "JD123" },
+      { id: 2, name: "Jane Smith", email: "jane.smith@example.com", phone: "123-456-7891", userid: "JS456" },
+      { id: 3, name: "Alice Johnson", email: "alice.johnson@example.com", phone: "123-456-7892", userid: "AJ789" },
+      { id: 4, name: "Bob Brown", email: "bob.brown@example.com", phone: "123-456-7893", userid: "BB012" },
+      { id: 5, name: "Charlie Black", email: "charlie.black@example.com", phone: "123-456-7894", userid: "CB345" },
+    ];
+    setVisitors(dummyVisitors);
   };
 
   const fetchLogs = async () => {
-    try {
-      const response = await fetch("/api/admin/getCheckInOutLogs");
-      const data = await response.json();
-      setLogs(data);
+    const dummyLogs = [
+      { userId: "JD123", checkInTime: "2024-11-23T08:30:00Z", checkOutTime: "2024-11-23T16:30:00Z" },
+      { userId: "JS456", checkInTime: "2024-11-23T09:00:00Z", checkOutTime: "2024-11-23T17:00:00Z" },
+      { userId: "AJ789", checkInTime: "2024-11-23T08:45:00Z", checkOutTime: "2024-11-23T15:30:00Z" },
+      { userId: "BB012", checkInTime: "2024-11-22T10:00:00Z", checkOutTime: "2024-11-22T18:00:00Z" },
+      { userId: "CB345", checkInTime: "2024-11-22T11:30:00Z", checkOutTime: null },
+    ];
 
-      // Calculate today's check-ins
-      const today = new Date().toISOString().split("T")[0]; // Get today's date in YYYY-MM-DD
-      const todayCheckInCount = data.filter(
-        (log) => log.checkInTime && log.checkInTime.startsWith(today)
-      ).length;
-      setTodayCheckIns(todayCheckInCount);
-    } catch (error) {
-      console.error("Error fetching logs:", error);
-    }
+    // Validate logs: Filter out logs with incomplete or mismatched data
+    const validLogs = dummyLogs.filter(log => log.checkInTime && log.checkOutTime);
+    setLogs(validLogs);
+
+    // Calculate today's date
+    const today = new Date().toISOString().split("T")[0];
+
+    // Today's Check-Ins and Check-Outs
+    const checkInsToday = validLogs.filter(log => log.checkInTime.startsWith(today)).length;
+    const checkOutsToday = validLogs.filter(log => log.checkOutTime.startsWith(today)).length;
+
+    setTodayCheckIns(checkInsToday);
+    setTodayCheckOuts(checkOutsToday);
   };
 
   return (
     <div className="flex">
       {/* Sidebar */}
       <div className="w-64 bg-black text-white min-h-screen p-4 flex flex-col">
-        <div className="text-2xl font-bold mb-8">Admin</div>
-        <nav className="space-y-4 flex-grow">
-          <div className="flex items-center">
-            <FontAwesomeIcon icon={faChartBar} className="mr-2" />
-            <span>Dashboard</span>
+        <div className="flex items-center mb-8">
+          <img
+            src="https://via.placeholder.com/50"
+            alt="Profile"
+            className="w-12 h-12 rounded-full mr-4"
+          />
+          <div>
+            <h2 className="text-xl font-bold">Admin Name</h2>
+            <p className="text-sm text-gray-400">Administrator</p>
           </div>
+        </div>
+        <nav className="space-y-4 flex-grow">
+          <Link to="/admin/dashboard" className="hover:text-orange-500 transition duration-300 flex items-center">
+            <FontAwesomeIcon icon={faChartBar} className="mr-2" />
+            Dashboard
+          </Link>
           <Link to="/admin/register" className="hover:text-orange-500 transition duration-300 flex items-center">
             <FontAwesomeIcon icon={faUserPlus} className="mr-2" />
-            <span>RegistertedVistors</span>
+            Registered Visitors
           </Link>
           <Link to="/admin/check-in" className="hover:text-orange-500 transition duration-300 flex items-center">
             <FontAwesomeIcon icon={faCheck} className="mr-2" />
-            <span>Check-In</span>
+            Visitor Check-In
           </Link>
           <Link to="/admin/check-out" className="hover:text-orange-500 transition duration-300 flex items-center">
             <FontAwesomeIcon icon={faClock} className="mr-2" />
-            <span>Check-Out</span>
+            Visitor Check-Out
           </Link>
           <Link to="/admin/user-management" className="hover:text-orange-500 transition duration-300 flex items-center">
             <FontAwesomeIcon icon={faUserCog} className="mr-2" />
-            <span>Manage Users</span>
+            Manage Users
           </Link>
         </nav>
-        <div className="mt-auto flex items-center">
+        <div className="mt-auto flex items-center cursor-pointer">
           <FontAwesomeIcon icon={faSignOutAlt} className="mr-2" />
-          <span>Sign Out</span>
+          Sign Out
         </div>
       </div>
 
@@ -89,37 +115,12 @@ const AdminDashboard = () => {
             <p className="text-3xl">{todayCheckIns}</p>
           </div>
           <div className="bg-orange-500 text-white p-4 rounded shadow">
-            <h2 className="text-lg font-semibold">Total Logs</h2>
-            <p className="text-3xl">{logs.length}</p>
+            <h2 className="text-lg font-semibold">Today's Check-Outs</h2>
+            <p className="text-3xl">{todayCheckOuts}</p>
           </div>
         </div>
 
-        {/* Registered Visitors Table */}
-        <div className="mb-8">
-          <h2 className="text-xl font-semibold mb-2">Registered Visitors</h2>
-          <table className="min-w-full bg-white">
-            <thead className="bg-gray-800 text-white">
-              <tr>
-                <th className="px-4 py-2">Name</th>
-                <th className="px-4 py-2">User Id</th>
-                <th className="px-4 py-2">Email</th>
-                <th className="px-4 py-2">Phone</th>
-              </tr>
-            </thead>
-            <tbody>
-              {visitors.map((visitor) => (
-                <tr key={visitor.id} className="bg-gray-100">
-                  <td className="border px-4 py-2">{visitor.name}</td>
-                  <td className="border px-4 py-2">{visitor.email}</td>
-                  <td className="border px-4 py-2">{visitor.phone}</td>
-                  <td className="border px-4 py-2">{visitor.userid}</td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
-
-        {/* Check-In/Out Logs Table */}
+        {/* Logs Table */}
         <div>
           <h2 className="text-xl font-semibold mb-2">Check-In/Check-Out Logs</h2>
           <table className="min-w-full bg-white">
@@ -131,8 +132,8 @@ const AdminDashboard = () => {
               </tr>
             </thead>
             <tbody>
-              {logs.map((log) => (
-                <tr key={log.userId} className="bg-gray-100">
+              {logs.map((log, index) => (
+                <tr key={index} className="bg-gray-100">
                   <td className="border px-4 py-2">{log.userId}</td>
                   <td className="border px-4 py-2">
                     {log.checkInTime ? new Date(log.checkInTime).toLocaleString() : "N/A"}

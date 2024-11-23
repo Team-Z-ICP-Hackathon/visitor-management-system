@@ -5,7 +5,7 @@ import { idlFactory } from '../declarations/CheckinLog';
 const agent = new HttpAgent();
 const checkinLogActor = Actor.createActor(idlFactory, {
     agent,
-    canisterId: 'bd3sg-teaaa-aaaaa-qaaba-cai', // Your backend canister ID
+    canisterId: 'bd3sg-teaaa-aaaaa-qaaba-cai', 
 });
 
 export const registerVisitor = async (visitorData) => {
