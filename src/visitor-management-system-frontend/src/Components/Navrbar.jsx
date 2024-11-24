@@ -12,10 +12,13 @@ const Navbar = () => {
     <div>
       <nav className="flex items-center justify-between p-4 bg-gray-800 text-white">
         <h1 className="text-4xl font-extrabold text-orange-500">SecurePass</h1>
+        <Link to="/" className="hover:text-orange-500 transition duration-300">
+            Home
+        </Link>
         <div className="flex space-x-8">
           <Link to="/registration" className="hover:text-orange-500 transition duration-300">
             Register
-          </Link>
+          </Link>          
           <Link to="/check-out" className="hover:text-orange-500 transition duration-300">
             Check-out
           </Link>
