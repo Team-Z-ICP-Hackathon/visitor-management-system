@@ -1,0 +1,27 @@
+{
+  "canisters": {
+    "internet_identity" : {
+      "type": "pull",
+      "id": "rdmx6-jaaaa-aaaaa-aaadq-cai"
+    },
+    "visitor-management-system-backend": {
+      "main": "src/visitor-management-system-backend/main.mo",
+      "type": "motoko"
+    },
+    "visitor-management-system-frontend": {
+      "dependencies": [
+        "visitor-management-system-backend"
+      ],
+      "source": [
+        "src/visitor-management-system-frontend/dist"
+      ],
+      "type": "assets"
+    }
+  },
+  "networks": {
+    "local": {
+      "bind": "127.0.0.1:8000"
+    }
+  },
+  "version": 1
+}
